@@ -8,6 +8,10 @@ public interface Calcuator {
             return operand1 + operand2;
         }else if(operator.equals("-")) {
             return operand1 - operand2;
+        }else if(operator.equals("*")) {
+            return operand1 * operand2;
+        }else if(operator.equals("/")) {
+            return operand1 / operand2;
         }
         else{
             return 0;

@@ -1,10 +1,15 @@
 package dh.study.test;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
  * 요구사항
@@ -16,21 +21,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CalculatorTest {
 
     @DisplayName("덧셈 연산을 정상적으로 수행한다.")
-    @Test
-    void 덧셈연산() throws Exception {
+    @ParameterizedTest
+    @MethodSource("formulaAndResult")
+    void 사칙연산테스트(int op1, String operator, int op2, int result) throws Exception {
 
-        int result = Calcuator.calculate(1, "+", 2);
+        int calculate = Calcuator.calculate(op1, operator, op2);
 
-        assertThat(result).isEqualTo(3);
+        assertThat(calculate).isEqualTo(result);
     }
 
-    @DisplayName("뺄셈 연상을 정상적으로 수행한다.")
-    @Test
-    void 뺄셈연산() throws Exception {
-
-        int result = Calcuator.calculate(3, "-", 1);
-
-        assertThat(result).isEqualTo(2);
+    private static Stream<Arguments> formulaAndResult() {
+        return Stream.of(
+                arguments(1, "+", 2, 3),
+                arguments(2, "-", 1, 1),
+                arguments(1, "*", -1, -1),
+                arguments(4, "/", 2, 2)
+        );
     }
 
 }
