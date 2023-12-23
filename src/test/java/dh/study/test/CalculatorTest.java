@@ -24,4 +24,13 @@ public class CalculatorTest {
         assertThat(result).isEqualTo(3);
     }
 
+    @DisplayName("뺄셈 연상을 정상적으로 수행한다.")
+    @Test
+    void 뺄셈연산() throws Exception {
+
+        int result = Calcuator.calculate(3, "-", 1);
+
+        assertThat(result).isEqualTo(2);
+    }
+
 }

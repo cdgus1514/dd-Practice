@@ -6,7 +6,10 @@ public interface Calcuator {
 
         if(operator.equals("+")) {
             return operand1 + operand2;
-        }else{
+        }else if(operator.equals("-")) {
+            return operand1 - operand2;
+        }
+        else{
             return 0;
         }
     }
